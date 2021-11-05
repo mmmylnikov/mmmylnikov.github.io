@@ -5,4 +5,4 @@
 ---
 
 ### Ноутбуки
-* [Маркдаун](mmmylnikov.github.io/notebook/md.md)
+* [Маркдаун](notebook/md.md)
