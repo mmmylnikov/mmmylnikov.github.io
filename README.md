@@ -5,7 +5,7 @@
 
 # 📇 Контакты для связи
 * 📱 Телеграм - [@mmmylnikov](https://t.me/MMMylnikov)
-* 📧 Почта - mmmylnikov@ya.ru
+* 📧 Почта - [mmmylnikov@ya.ru](mailto:mmmylnikov@ya.ru)
 
 # 👨‍💻 Интересы
 > HTML, CSS, JavaScript,
