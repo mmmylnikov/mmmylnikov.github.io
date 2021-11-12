@@ -3,7 +3,7 @@
 ## 📝 Рецепты кода
 
 ### Разметка
-* [Маркдаун](https://mmmylnikov.github.io/notebook/md.md)
+* [Маркдаун](https://mmmylnikov.github.io/notebook/md)
 
 ---
 ### Максим Мыльников
