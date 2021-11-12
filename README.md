@@ -114,3 +114,4 @@ Autocad, Google Sheets
 
 <div align="center">mmmylnikov.github.io</div>
 <div align="center"><small>Екатеринбург 2021</small></div>
+<div align="center"><small><sup><a href="https://mmmylnikov.github.io/sitemap">карта сайта</a></sup></small></div>
