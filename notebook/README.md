@@ -4,6 +4,7 @@
 
 ### Разметка
 * [Маркдаун](https://mmmylnikov.github.io/notebook/md)
+* [SQL](https://mmmylnikov.github.io/notebook/sql)
 
 ---
 ### Максим Мыльников
