@@ -6,6 +6,7 @@
   * [Курсы](https://mmmylnikov.github.io/courses)
   * [Блокноты](https://mmmylnikov.github.io/notebook)
     * [Маркдаун](https://mmmylnikov.github.io/notebook/md)
+    * [SQL](https://mmmylnikov.github.io/notebook/sql)
 
 ---
 ### Максим Мыльников
