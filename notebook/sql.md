@@ -101,7 +101,8 @@ GROUP BY department_id;
 ```
 
 ### Фильтрация строк в запросе Select. Работа с операторами AND, OR, IN, NOT IN
-> https://www.youtube.com/watch?v=OWSRLbj1afo
+> Источник: https://www.youtube.com/watch?v=OWSRLbj1afo
+
 ```sql
 SELECT * FROM employees;
 
@@ -188,3 +189,37 @@ SELECT
     UPPER(last_name) AS last_name_2,
     LOWER(last_name) AS last_name_3
 FROM employees;
+```
+
+### Фильтрация строк в запросе Select. Работа с оператором BETWEEN и вложенными SQL запросами
+> Источник: https://www.youtube.com/watch?v=wZSLOKnmqEc
+
+```sql
+SELECT * FROM departments;
+ 
+SELECT * FROM employees
+WHERE department_id IN (30, 90, 100);
+ 
+SELECT * FROM departments
+WHERE DEPARTMENT_NAME IN ('Purchasing', 'Executive', 'Finance');
+ 
+SELECT * FROM employees
+WHERE department_id IN 
+(
+     SELECT * FROM departments
+     WHERE DEPARTMENT_NAME IN ('Purchasing', 'Executive', 'Finance')
+);
+ 
+SELECT * FROM employees
+WHERE department_id IN 
+(
+     SELECT department_id FROM departments
+     WHERE DEPARTMENT_NAME IN ('Purchasing', 'Executive', 'Finance')
+);
+ 
+SELECT * FROM employees
+WHERE HIRE_DATE BETWEEN '01.06.05' AND '31.08.05';
+ 
+SELECT * FROM employees
+WHERE employee_id BETWEEN 100 AND 110;
+```
