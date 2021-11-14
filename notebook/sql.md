@@ -223,3 +223,90 @@ WHERE HIRE_DATE BETWEEN '01.06.05' AND '31.08.05';
 SELECT * FROM employees
 WHERE employee_id BETWEEN 100 AND 110;
 ```
+
+### Фильтрация строк в запросе Select. Работа с операторами LIKE и NOT LIKE.
+> Источник: https://www.youtube.com/watch?v=peuQL60RFxg
+
+```sql
+SELECT * FROM employees
+WHERE JOB_ID LIKE '%ACCOUNT%';
+ 
+SELECT * FROM employees
+WHERE JOB_ID LIKE '%R%REP';
+ 
+SELECT TABLE_NAME, column_name, data_type FROM user_tab_columns
+WHERE COLUMN_NAME LIKE '%DEPARTMENT%';
+ 
+SELECT TABLE_NAME, column_name, data_type FROM user_tab_columns
+WHERE COLUMN_NAME LIKE '%department%';
+ 
+SELECT TABLE_NAME, column_name, data_type FROM user_tab_columns
+WHERE LOWER(COLUMN_NAME) LIKE '%department%';
+ 
+SELECT TABLE_NAME, column_name, data_type FROM user_tab_columns
+WHERE COLUMN_NAME NOT LIKE '%DEPARTMENT%';
+```
+
+### Фильтрация строк в запросе Select. Специфика значений NULL
+> Источник: https://www.youtube.com/watch?v=5P0a5SODbEQ
+ 
+```sql
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, MANAGER_ID, DEPARTMENT_ID 
+FROM employees
+WHERE 
+     department_id = 90
+;
+ 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, MANAGER_ID, DEPARTMENT_ID 
+FROM employees
+WHERE 
+    department_id = 90 
+    AND manager_id = '(null)'
+;
+ 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, MANAGER_ID, DEPARTMENT_ID 
+FROM employees
+WHERE 
+    department_id = 90 
+    AND manager_id IS NULL
+;
+ 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, MANAGER_ID, DEPARTMENT_ID 
+FROM employees
+WHERE 
+    department_id = 90 
+    AND manager_id IS NOT NULL
+;
+ 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, nvl(MANAGER_ID, 0) AS MANAGER_ID, DEPARTMENT_ID 
+FROM employees
+WHERE 
+    department_id = 90
+;
+```
+
+### Агрегация данных в SQL с помощью функции COUNT
+> Источник: https://www.youtube.com/watch?v=8h7JGr9loFo
+ 
+```sql
+SELECT * FROM EMPLOYEES;
+ 
+SELECT COUNT(*) FROM EMPLOYEES;
+ 
+SELECT COUNT(*) FROM EMPLOYEES
+WHERE MANAGER_ID = 100;
+ 
+SELECT JOB_ID, COUNT(*) FROM EMPLOYEES
+GROUP BY JOB_ID;
+ 
+SELECT JOB_ID, DEPARTMENT_ID, COUNT(*) FROM EMPLOYEES
+GROUP BY JOB_ID, DEPARTMENT_ID;
+ 
+SELECT JOB_ID, COUNT(DEPARTMENT_ID) FROM EMPLOYEES
+GROUP BY JOB_ID;
+ 
+SELECT COUNT(DEPARTMENT_ID), COUNT(*) FROM EMPLOYEES;
+ 
+SELECT DEPARTMENT_ID, COUNT(*) FROM EMPLOYEES
+GROUP BY DEPARTMENT_ID;
+```
