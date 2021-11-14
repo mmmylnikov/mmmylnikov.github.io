@@ -2,7 +2,7 @@
 
 ## 📝 Рецепты кода / Разметка / SQL
 
-> Источник: [Базовый курс SQL для аналитиков и менеджеров… (юдеми)](https://www.udemy.com/course/sql-for-beginner/) 
+> Источник: [Базовый курс SQL для аналитиков и менеджеров… (юдеми)](https://www.udemy.com/course/sql-for-beginner/)
 
 
 ### Типы данных
@@ -15,7 +15,7 @@ select 'Пример соединения ' || 'двух тестовых зна
 
 -- Числовые типы данных
 select 100 as TEST from dual;
-select '100' + 10 as TEST from dual; 
+select '100' + 10 as TEST from dual;
 select 100 - 10 as TEST from dual;
 select 100 / 2 as TEST from dual;
 
@@ -50,7 +50,7 @@ SELECT
     department_id
 FROM
     employees;
-	
+
 
 SELECT employee_id, first_name, last_name, salary, department_id
 FROM employees;
@@ -99,3 +99,92 @@ FROM employees
 WHERE department_id = 80
 GROUP BY department_id;
 ```
+
+### Фильтрация строк в запросе Select. Работа с операторами AND, OR, IN, NOT IN
+> https://www.youtube.com/watch?v=OWSRLbj1afo
+```sql
+SELECT * FROM employees;
+
+
+SELECT * FROM employees
+WHERE rownum <= 10;
+
+
+SELECT * FROM employees
+WHERE department_id = 80;
+
+
+SELECT * FROM employees
+WHERE department_id = 80 AND manager_id = 100;
+
+
+SELECT * FROM employees
+WHERE department_id = 80 OR manager_id = 100;
+
+
+SELECT * FROM employees
+WHERE
+    department_id = 80
+    OR (department_id = 60 AND manager_id = 103)
+;
+
+
+SELECT * FROM employees
+WHERE
+    department_id = 80
+    OR (department_id = 60 AND manager_id = 103)
+    OR (department_id = 90 AND manager_id = 100)
+;
+
+
+SELECT * FROM employees WHERE department_id = 80 OR (department_id = 60 AND manager_id = 103) OR (department_id = 90 AND manager_id = 100);
+
+
+SELECT 1 + 3 * 2 FROM dual;
+SELECT (1 + 3) * 2 FROM dual;
+
+
+SELECT * FROM employees
+WHERE department_id = 80 OR (department_id = 60 AND manager_id = 103);
+
+
+SELECT * FROM employees
+WHERE (department_id = 80 OR department_id = 60) AND manager_id = 103;
+
+
+SELECT * FROM employees
+WHERE
+    employee_id = 100
+    OR employee_id = 101
+    OR employee_id = 102
+;
+
+
+SELECT * FROM employees
+WHERE employee_id IN (100, 101, 102);
+
+
+SELECT * FROM employees
+WHERE  employee_id NOT IN (100, 101, 102);
+
+
+SELECT * FROM employees
+WHERE
+    last_name = 'King'
+    OR last_name = 'Lorentz'
+;
+
+
+SELECT * FROM employees
+WHERE last_name IN ('King', 'Lorentz');
+
+
+SELECT * FROM employees
+WHERE UPPER(last_name) IN ('KING', 'LORENTZ');
+
+
+SELECT
+    last_name,
+    UPPER(last_name) AS last_name_2,
+    LOWER(last_name) AS last_name_3
+FROM employees;
