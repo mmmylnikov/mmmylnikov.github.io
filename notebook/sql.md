@@ -4,7 +4,7 @@
 
 > Источник: [Базовый курс SQL для аналитиков и менеджеров… (юдеми)](https://www.udemy.com/course/sql-for-beginner/)
 
-
+## Введение
 ### Типы данных
 ```sql
 -- Символьные типы данных
@@ -25,7 +25,7 @@ select to_date('01.01.2019', 'dd.mm.yyyy') as TEST from dual;
 select to_date('01.01.2019', 'dd.mm.yyyy') + 10 as TEST from dual;
 select to_date('01.01.2019', 'dd.mm.yyyy') - 1 as TEST from dual;
 ```
-
+## Выборка, фильтрация, агрегация
 ### Запросы на выборку
 
 ```sql
@@ -438,3 +438,261 @@ FROM DEPARTMENTS
 ORDER BY MANAGER_ID ASC NULLS FIRST 
 ;
 ```
+## Создание, удаление, переименование таблиц
+### Создание таблиц в базе данных
+> Источник: https://www.youtube.com/watch?v=cXqZRg-pewM
+ 
+```sql
+CREATE TABLE KMV_CUSTOMERS
+    ( 
+        customer_id     NUMBER,
+        customer_name   varchar2(20),
+        city            varchar2(20)
+    )
+;
+ 
+ 
+ 
+CREATE TABLE KMV_CUSTOMERS
+    ( 
+        customer_id     NUMBER          NOT NULL,
+        customer_name   varchar2(20)    NOT NULL,
+        city            varchar2(20)
+    )
+;
+```
+
+### Переименование и удаление таблиц в базе данных
+> Источник: https://www.youtube.com/watch?v=VKhLWx7ue6A
+ 
+```sql
+CREATE TABLE KMV_CUSTOMERS
+    ( 
+        customer_id     NUMBER,
+        customer_name   varchar2(20),
+        city            varchar2(20)
+    )
+;
+ 
+ 
+ALTER TABLE OLD_TABLE RENAME TO NEW_TABLE;
+ALTER TABLE KMV_CUSTOMERS RENAME TO KMV_CUSTOMERS_NEW;
+ 
+ 
+SELECT * FROM KMV_CUSTOMERS;
+SELECT * FROM KMV_CUSTOMERS_NEW;
+ 
+ 
+DROP TABLE TABLE_NAME;
+DROP TABLE KMV_CUSTOMERS_NEW;
+DROP TABLE TABLE_NAME purge;
+```
+## Вставка, обновление, удаление данных
+### Вставка данных в таблицу
+> Источник: https://www.youtube.com/watch?v=rd4ULZdOTzw
+
+```sql 
+SELECT * FROM KMV_CUSTOMERS;
+ 
+ 
+CREATE TABLE KMV_CUSTOMERS
+    ( 
+        customer_id         NUMBER,
+        customer_name   varchar2(50),
+        city            varchar2(50)
+    )
+;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS 
+     (customer_id, customer_name, city)
+VALUES
+     (991, 'Иванов Иван Иванович', 'Москва');
+commit;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (992, 'Петров Иван Иванович', 'Пермь');
+INSERT INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (993, 'Сидоров Иван Иванович', 'Краснодар');
+INSERT INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (994, 'Скворцов Иван Иванович', 'Уфа');
+commit;
+ 
+ 
+INSERT ALL
+  INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (995, 'Петров Иван Иванович', 'Мурманск')
+  INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (996, 'Петров Иван Иванович', 'Омск')
+  INTO KMV_CUSTOMERS (customer_id, customer_name, city) VALUES (997, 'Петров Иван Иванович', 'Волгоград')
+SELECT * FROM dual;
+commit;
+ 
+ 
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME ||' '|| LAST_NAME AS CUSTOMER_NAME,
+    'n/a' AS CITY
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID IN (100, 105, 110, 115, 120)
+ORDER BY EMPLOYEE_ID;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS (CUSTOMER_ID, CUSTOMER_NAME, CITY)
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME ||' '|| LAST_NAME AS CUSTOMER_NAME,
+    'n/a' AS CITY
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID IN (100, 105, 110, 115, 120)
+ORDER BY EMPLOYEE_ID;
+commit;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS (CITY, CUSTOMER_NAME, CUSTOMER_ID)
+VALUES ('Уфа', 'Скворцов Иван Иванович', 994);
+commit;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS (CITY, CUSTOMER_ID)
+VALUES ('Уфа', 994);
+commit;
+ 
+ 
+INSERT INTO KMV_CUSTOMERS 
+VALUES  (997, 'Петров Иван Иванович', 'Волгоград');
+commit;
+ 
+ 
+DROP TABLE KMV_CUSTOMERS_NEW purge;
+CREATE TABLE KMV_CUSTOMERS_NEW 
+AS
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME ||' '|| LAST_NAME AS CUSTOMER_NAME,
+    'n/a' AS CITY
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID IN (100, 105, 110, 115, 120)
+ORDER BY EMPLOYEE_ID;
+commit;
+ 
+ 
+SELECT * FROM KMV_CUSTOMERS_NEW;
+```
+
+### Обновление и удаление данных в таблице
+> Источник: https://www.youtube.com/watch?v=xPYxWoj8cuw
+
+```sql 
+SELECT * FROM KMV_CUSTOMERS;
+ 
+ 
+CREATE TABLE KMV_CUSTOMERS AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, HIRE_DATE
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID IN (100, 105, 110, 115, 120);
+commit;
+ 
+ 
+UPDATE KMV_CUSTOMERS
+SET HIRE_DATE = '01.01.1999'
+WHERE EMPLOYEE_ID = 105;
+commit;
+ 
+ 
+UPDATE KMV_CUSTOMERS
+SET FIRST_NAME = 'Иван',
+    LAST_NAME = 'Иванов'
+WHERE EMPLOYEE_ID = 105;
+commit;
+ 
+ 
+UPDATE KMV_CUSTOMERS
+SET FIRST_NAME = 'Иван',
+    LAST_NAME = 'Иванов'
+WHERE EMPLOYEE_ID IS NOT NULL;
+commit;
+ 
+ 
+DELETE FROM KMV_CUSTOMERS
+WHERE EMPLOYEE_ID = 105;
+commit;
+ 
+ 
+DELETE FROM KMV_CUSTOMERS
+WHERE EMPLOYEE_ID IS NOT NULL;
+commit;
+```
+
+## Объединение таблиц
+### INNER JOIN
+> Источник: https://www.youtube.com/watch?v=uTCr_nMmQjU
+ 
+```sql
+SELECT * FROM EMPLOYEES
+WHERE 
+    DEPARTMENT_ID IN 
+        (
+            SELECT DEPARTMENT_ID
+            FROM DEPARTMENTS
+            WHERE DEPARTMENT_NAME IN ('IT', 'Finance') 
+        )
+;
+ 
+SELECT 
+    a.* 
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    b.DEPARTMENT_NAME IN ('IT', 'Finance')
+;
+ 
+SELECT 
+    a.* 
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+SELECT * FROM DEPARTMENTS_2
+;
+ 
+SELECT 
+    a.* 
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+SELECT 
+    a.*, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+SELECT 
+    a.*, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    b.DEPARTMENT_NAME IN ('IT', 'Finance')
+;
+ 
+SELECT 
+    a.EMPLOYEE_ID, a.FIRST_NAME, a.LAST_NAME, a.DEPARTMENT_ID, b.DEPARTMENT_NAME, b.LOCATION_ID
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    b.DEPARTMENT_NAME IN ('IT', 'Finance')
+;
+ 
+SELECT 
+    b.EMPLOYEE_ID, b.FIRST_NAME, b.LAST_NAME, b.DEPARTMENT_ID, a.DEPARTMENT_NAME, a.LOCATION_ID
+FROM 
+    DEPARTMENTS a
+    INNER JOIN EMPLOYEES b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    a.DEPARTMENT_NAME IN ('IT', 'Finance')
+;
+```
+
