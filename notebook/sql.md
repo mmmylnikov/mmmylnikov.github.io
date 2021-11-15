@@ -696,3 +696,319 @@ WHERE
 ;
 ```
 
+### LEFT JOIN
+> Источник: https://www.youtube.com/watch?v=O57gQ3c0aEk
+ 
+```sql
+SELECT * FROM DEPARTMENTS_2
+;
+ 
+SELECT 
+    a.*, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    INNER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+SELECT 
+    a.*, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    LEFT OUTER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+SELECT 
+    a.*, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    LEFT OUTER JOIN DEPARTMENTS b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+```
+### RIGHT JOIN
+>   Источник: https://www.youtube.com/watch?v=nJmEYZgxzDU
+
+```sql
+SELECT 
+    a.EMPLOYEE_ID, a.FIRST_NAME, a.LAST_NAME, a.DEPARTMENT_ID, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    LEFT OUTER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    a.EMPLOYEE_ID = '109'
+;
+ 
+ 
+SELECT 
+    a.EMPLOYEE_ID, a.FIRST_NAME, a.LAST_NAME, a.DEPARTMENT_ID, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    RIGHT OUTER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+WHERE 
+    a.EMPLOYEE_ID = '109'
+;
+ 
+ 
+SELECT 
+    a.EMPLOYEE_ID, a.FIRST_NAME, a.LAST_NAME, a.DEPARTMENT_ID, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    RIGHT OUTER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+ 
+ 
+SELECT 
+    a.EMPLOYEE_ID, a.FIRST_NAME, a.LAST_NAME, a.DEPARTMENT_ID, b.DEPARTMENT_NAME
+FROM 
+    EMPLOYEES a
+    LEFT OUTER JOIN DEPARTMENTS_2 b ON a.DEPARTMENT_ID = b.DEPARTMENT_ID
+;
+```
+
+###  FULL JOIN
+> Источник: https://www.youtube.com/watch?v=KsBIHB1covo
+ 
+```sql
+SELECT LOCATION_ID, STREET_ADDRESS, POSTAL_CODE, CITY, STATE_PROVINCE, COUNTRY_ID
+FROM LOCATIONS
+;
+ 
+SELECT COUNTRY_ID, COUNTRY_NAME, REGION_ID
+FROM COUNTRIES
+;
+ 
+SELECT DISTINCT CITY, COUNTRY_ID
+FROM LOCATIONS
+;
+ 
+SELECT 
+    DISTINCT a.CITY, a.COUNTRY_ID, b.COUNTRY_NAME, b.REGION_ID
+FROM 
+    LOCATIONS a
+    FULL OUTER JOIN COUNTRIES b ON a.COUNTRY_ID = b.COUNTRY_ID
+;
+```
+
+## Работа с множествами в SQL (UNION, MINUS, INTERSECT)
+> Источник: https://www.youtube.com/watch?v=1n9oQE9i85c
+ 
+```sql
+SELECT * FROM DEPARTMENTS_NEW;
+SELECT * FROM DEPARTMENTS_OLD;
+ 
+ 
+SELECT * FROM DEPARTMENTS_NEW
+UNION ALL
+SELECT * FROM DEPARTMENTS_OLD
+;
+ 
+ 
+SELECT * FROM DEPARTMENTS_NEW
+UNION
+SELECT * FROM DEPARTMENTS_OLD
+;
+ 
+ 
+SELECT * FROM DEPARTMENTS_NEW
+MINUS
+SELECT * FROM DEPARTMENTS_OLD
+;
+ 
+ 
+SELECT * FROM DEPARTMENTS_NEW
+INTERSECT 
+SELECT * FROM DEPARTMENTS_OLD
+;
+``` 
+ 
+## Полезные операторы и функции SQL
+### Функции SQL для числовых типов данных (ROUND, ABS, TRUNC)
+> Источник: https://youtu.be/m3ZeiBxkg70
+ 
+```sql
+--ROUND
+SELECT ROUND(123.456, 0) FROM DUAL;
+SELECT ROUND(123.456, 1) FROM DUAL;
+SELECT ROUND(123.456, 2) FROM DUAL;
+ 
+--ABS
+SELECT ABS(-5) FROM DUAL;
+SELECT ABS(-5.6) FROM DUAL;
+SELECT ABS(5.65) FROM DUAL;
+ 
+--TRUNC
+SELECT TRUNC(123.4567, 0) FROM DUAL;
+SELECT TRUNC(123.4567, 1) FROM DUAL;
+SELECT TRUNC(123.4567, 2) FROM DUAL;
+```
+
+### Числовые / математические функции Oracle PL/SQL
+> Источник: https://oracleplsql.ru/numeric-mathematical.html
+```sql
+ABS -- абсолютное значение числа.
+ACOS -- арккосинус числа.
+ASIN -- арксинус числа.
+ATAN -- арктангенс числа.
+ATAN2 -- арктангенс n и m.
+AVG -- среднее значение выражения.
+BITAND -- целое число, представляющее побитовую операцию AND над битами expr1 и expr2.
+CEIL -- наименьшее целое число, которое больше или равно number.
+COS -- косинус числа.
+COSH -- гиперболический косинус числа.
+COUNT -- количество возращенных запросом строк.
+EXP -- e, возведенное в n-ную степень, где е = 2,71828183.
+FLOOR -- наибольшее целое значение, равное или меньшее, чем число.
+GREATEST -- наибольшее значение в списке выражений.
+LEAST -- наименьшее значение в списке выражений.
+LN -- натуральный логарифм числа.
+LOG -- логарифм n по основанию m.
+MAX -- максимальное значение выражения.
+MEDIAN -- медиану выражения.
+MIN -- минимальное значение выражения.
+MOD -- остаток от деления m на n.
+POWER -- возводит m в степень n.
+REGEXP_COUNT -- подсчитывает количество вхождений шаблона в строку. Эта функция, введенная в Oracle 11g, позволит вам подсчитать количество раз, когда подстрока встречается в строке с использованием сопоставления шаблонов регулярных выражений.
+REMAINDER -- остаток от деления m на n.
+ROUND -- число, округленное до определенного количества знаков после запятой.
+SIGN -- значение, определяющее знак числа.
+SIN -- синус числа.
+SINH -- гиперболический синус числа.
+SQRT -- извлекает квадратный корень из числа.
+SUM -- суммарное значение выражения.
+TAN -- тангенс числа.
+TANH -- гиперболический тангенс числа.
+TRUNC -- число, усеченное до определенного количества знаков после запятой.
+```
+
+### Функции SQL для символьных типов данных (LOWER, UPPER, INITCAP, LENGTH, CHR, CONCAT, TRIM, TRANSLATE, REPLACE, INSTR, SUBSTR, TO_CHAR)
+> Источник https://youtu.be/myYvKpjquGw
+
+```sql
+SELECT LOWER('Обучение SQL') FROM DUAL;
+SELECT UPPER('Обучение SQL') FROM DUAL;
+SELECT INITCAP('обучение SQL') FROM DUAL;
+ 
+SELECT LENGTH('Обучение SQL') FROM DUAL;
+ 
+SELECT CHR(37) FROM DUAL;
+SELECT CHR(34) FROM DUAL;
+SELECT CHR(12) FROM DUAL;
+ 
+SELECT CONCAT('Значение 1', ' Значение 2') FROM dual;
+SELECT CONCAT(CONCAT('Значение 1 ', 'Значение 2'), ' Значение 3 ') FROM dual;
+SELECT 'Значение 1' || ' Значение 2' || ' Значение 3' FROM dual;
+ 
+SELECT TRIM('m' FROM 'mSQL') FROM DUAL;
+SELECT TRIM('П' FROM 'ПриветП') FROM DUAL;
+SELECT TRIM('     Обучение SQL     ') FROM DUAL;
+ 
+SELECT TRANSLATE('123-SQL-123', '123', '456') FROM DUAL;
+ 
+SELECT REPLACE('Базовый курс/мастер-класс по SQL', 'мастер-класс', 'вебинар') FROM DUAL;
+ 
+SELECT INSTR('Обучение SQL с нуля до профи', 'SQL') FROM DUAL;
+ 
+SELECT SUBSTR('Обучение SQL с нуля', 10, 3) FROM DUAL;
+ 
+SELECT TO_CHAR(1234.567, '9999.9') FROM DUAL;
+SELECT TO_CHAR(1234.567, '9,999.99') FROM DUAL;
+SELECT TO_CHAR(1234.567, '000099') FROM DUAL;
+ 
+SELECT SYSDATE FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'dd.mm.yyyy') FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'yyyy.mm.dd') FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'FMMonth DD, YYYY') FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'YYYY') FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'Q') FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'DAY') FROM DUAL;
+```
+
+### Символьные / строчные функции Oracle PL/SQL
+> Источник: https://oracleplsql.ru/string-character.html
+
+```sql
+ASCII  -- числовое представление крайнего левого символа строки.
+ASCIISTR -- преобразует строку любого набора символов к ASCII строке, используя набор символов базы данных.
+CHR -- является противоположностью функции ASCII. CHR  -- символ, который основан на числовом коде.
+COMPOSE  -- строку Unicode.
+CONCAT -- позволяет соединить вместе две строки.
+|| -- оператор конкатенации || позволяет объединить две или более строк вместе.
+DUMP  -- значение varchar2, который включает код типа данных, длину в байтах, и внутреннее представление выражения.
+INITCAP -- устанавливает первый символ каждого слова в верхний регистр, а остальные в нижний регистр.
+INSTR  -- n-е вхождение подстроки в строке.
+INSTR2  -- вхождение подстроки в строку, используя UCS2 кодовые точки.
+INSTR4  -- вхождение подстроки в строку, используя UCS4 кодовые точки.
+INSTRB  -- вхождение подстроки в строку, байты вместо символов.
+INSTRC  -- вхождение подстроки в строку, используя Unicode полные символов.
+LENGTH  -- длину указанной строки.
+LENGTH2  -- длину указанной строки, используя UCS2 кодовые точки.
+LENGTH4 -- длину указанной строки, используя UCS4 кодовые точки.
+LENGTHB  -- длину указанной строки, используя байты вместо символов.
+LENGTHC  -- длину указанной строки, используя полные символы Unicode.
+LOWER -- преобразует все символы в заданной строке в нижний регистр. Если есть символы в строке, которые не являются буквами, они не влияют на эту функцию.
+LPAD -- добавляет с левой части строки определенный набор символов (при не нулевом string1).
+LTRIM -- удаляет все указанные символы с левой стороны строки.
+NCHR  -- символ на основе number_code в национальной кодировке.
+REGEXP_INSTR -- является расширением функции INSTR. Она  -- местоположение шаблона регулярного выражения в строке. Эта функция, представленная в Oracle 10g, позволит вам найти подстроку в строке, используя сопоставление шаблонов регулярных выражений.
+REGEXP_LIKE -- позволяет выполнять регулярные выражения в предложении WHERE в запросах SELECT, INSERT, UPDATE или DELETE.
+REGEXP_REPLACE -- является расширением функции REPLACE. Эта функция, введенная в Oracle 10g, позволит вам заменить последовательность символов в строке другим набором символов, используя сопоставление шаблонов регулярных выражений.
+REGEXP_SUBSTR -- является расширением функции SUBSTR. Эта функция, представленная в Oracle 10g, позволит вам извлечь подстроку из строки, используя сопоставление шаблонов регулярных выражений.
+REPLACE -- заменяет последовательность символов в строке другим набором символов.
+RPAD -- дополняет с правой части строки определенный набор символов (при не нулевом string1).
+RTRIM -- удаляет все указанные символы из правой части строки.
+SOUNDEX  -- фонетическое представление (так, как это звучит) строки.
+SUBSTR -- позволяет извлекать подстроку из строки.
+TO_CHAR -- преобразует число или дату в строку.
+TRANSLATE -- заменяет последовательность символов в строке другим набором символов. Тем не менее, она заменяет один символ за один раз. Например, заменится первый символ в string_to_replace с первого символа в replacement_string. Тогда будет заменен второй символ в string_to_replace с вторым символом в replacement_string, и так далее.
+TRIM -- удаляет все указанные символы с начала или окончания строки.
+UPPER -- преобразует все символы строки в верхний регистр. Если есть символы в строке, которые не являются буквами, они не влияют на эту функцию.
+VSIZE  -- длину в байтах для внутреннего представления выражения.
+```
+### Функции SQL для даты и времени (SYSDATE, TO_DATE, LAST_DAY, ADD_MONTHS, EXTRACT, TRUNC)
+> Источник: https://youtu.be/_6XWUJ2zf8Y
+ 
+```sql
+SELECT SYSDATE FROM dual;
+SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') FROM dual;
+ 
+SELECT TO_DATE('29.12.2020', 'dd.mm.yyyy') FROM dual;
+SELECT TO_DATE('29/12/2020', 'dd/mm/yyyy') FROM dual;
+SELECT TO_DATE('2020/12/29', ' yyyy/mm/dd') FROM dual;
+SELECT TO_DATE('29.12.2020 15:45:30', 'DD.MM.YYYY HH24:MI:SS') FROM dual;
+ 
+SELECT LAST_DAY(TO_DATE('15.12.2020', 'dd.mm.yyyy')) FROM dual;
+ 
+SELECT ADD_MONTHS(TO_DATE('29.12.2020', 'dd.mm.yyyy'), 1) FROM dual;
+SELECT ADD_MONTHS(TO_DATE('29.12.2020', 'dd.mm.yyyy'), -1) FROM dual;
+ 
+SELECT EXTRACT(YEAR FROM to_date('29.12.2020', 'dd.mm.yyyy')) FROM dual;
+SELECT EXTRACT(MONTH FROM to_date('29.12.2020', 'dd.mm.yyyy')) FROM dual;
+SELECT EXTRACT(DAY FROM to_date('29.12.2020', 'dd.mm.yyyy')) FROM dual;
+ 
+SELECT SYSDATE FROM dual;
+SELECT TRUNC(SYSDATE, 'YEAR') FROM dual;
+SELECT TRUNC(SYSDATE, 'Q') FROM dual;
+SELECT TRUNC(SYSDATE, 'MONTH') FROM dual;
+SELECT TRUNC(SYSDATE, 'IW') FROM dual;
+```
+
+### Дата / время функции Oracle PL/SQL
+> Источник: https://oracleplsql.ru/date-time.html
+```sql
+ADD_MONTHS -- возвращает дату плюс n месяцев.
+CURRENT_DATE -- возвращает текущую дату в часовом поясе текущей сессии SQL как установлено с помощью команды ALTER SESSION.
+CURRENT_TIMESTAMP -- возвращает текущую дату и время в часовом поясе текущей сессии SQL как установлено с помощью команды ALTER SESSION. возвращает дату/время со значением часового пояса.
+DBTIMEZONE -- возвращает часовой пояс базы данных как смещения часового пояса (в следующем формате: '[+|-]TZH:TZM') или название региона часового пояса.
+EXTRACT -- извлекает значение из даты или значения интервала.
+LAST_DAY -- возвращает последний день месяца на основе значения даты.
+LOCALTIMESTAMP -- возвращает текущую дату и время в часовом поясе из текущей сессии SQL, как установлено командой ALTER SESSION. Это возвратит значение TIMESTAMP.
+MONTHS_BETWEEN -- возвращает количество месяцев между date1 и date2.
+NEW_TIME -- возвращает дату и время часового пояса zone2 для даты и времени часового пояса zone1, заданных date.
+NEXT_DAY -- возвращает первый день недели, который больше date.
+ROUND -- возвращает дату округленную до определенной единицы измерения.
+SESSIONTIMEZONE -- возвращает часовой пояс текущей сессии в качестве смещения часового пояса (в следующем формате: '[+|-]TZH:TZM') или наименование региона часового пояса.
+SYSDATE -- возвращает текущую системную дату и время на вашей локальной базе данных.
+SYSTIMESTAMP -- возвращает текущую системную дату и время (в том числе доли секунды и часового пояса) на ваше локальной базе данных.
+TO_DATE преобразует строку в дату.
+TRUNC -- возвращает дату, усеченную к определенной единице измерения.
+TZ_OFFSET -- возвращает смещение часового пояса из значения.
+```
