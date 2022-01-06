@@ -14,112 +14,42 @@
 
 - IDE
 
-  - Visual Studio Code
-
-  - Atom 🔖
-
-  - Neobook
+  - Visual Studio Code, Atom 🔖, Neobook
 
 - Сommunication
 
-  - Telegram
-
-  - WhatsApp
-
-  - AnyDesk
-
-  - TeamViewer
+  - Telegram, WhatsApp, AnyDesk, TeamViewer
 
 - Web
 
-  - HTML
+  - HTML, CSS (Bootstrap 🔖), JavaScript (Node.js 🔖, React 🔖)
 
-  - CSS
+  - Python (Django, Flask 🔖, Jinja, SQLAlchemy 🔖)
 
-    - Bootstrap 🔖
+  - SQL (SQLDeveloper, Valentina Studio)
 
-  - JavaScript
-
-    - Node.js 🔖
-
-    - React 🔖
-
-  - Python
-
-    - Django
-
-    - Flask 🔖
-
-    - Jinja
-
-    - SQLAlchemy 🔖
-
-  - SQL
-
-    - SQLDeveloper
-
-    - Valentina Studio
-
-  - Automation
-
-    - Google Sheets
-
-    - Postman
+  - Automation (Google Sheets, Postman)
 
 - Graphics
 
-  - Adobe Photoshop
-
-  - GIMP
-
-  - Gifski
-
-  - XnConvert
+  - Adobe Photoshop, GIMP, Gifski, XnConvert
 
 - VCS
 
-  - Git
-
-    - GitHub
+  - Git, GitHub
 
 - Prototyping
 
-  - Mind Map
-
-    - XMind
-
-    - Dashword
-
-  - Google Sheets
+  - Mind Map (XMind, Dashword), Google Sheets
 
 - Virtualization
 
-  - VirtualBox
-
-  - Docker 🔖
-
-  - Kubernetes 🔖
+  - VirtualBox, Docker 🔖, Kubernetes 🔖
 
 - CAD
 
-  - Autocad
-
-    - AutoLISP
-
-  - Топоматик Robur
-
-  - КРЕДО
-
-  - Компас
-
-  - ПК Лира
+  - Autocad (AutoLISP), Топоматик Robur, КРЕДО, Компас, ПК Лира
 
 - Modeling
 
-  - Универсальный механизм
-
-  - Algoryx
-
-  - AnyLogic
-
-    - Java
+  - Универсальный механизм, Algoryx, AnyLogic (Java)
