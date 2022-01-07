@@ -2,3 +2,4 @@
 *.opml
 data.*
 /notebook
+/legacy
