@@ -23,14 +23,20 @@
 - IDE
   - Visual Studio Code, Atom 🔖, Neobook
 - Сommunication
-  - Telegram, WhatsApp, AnyDesk, TeamViewer
+  - Telegram, WhatsApp, AnyDesk, TeamViewer, RDP
 - Web
   - HTML, CSS (Bootstrap 🔖), JavaScript (Node.js 🔖, React 🔖)
   - Python (Django, Flask 🔖, Jinja, SQLAlchemy 🔖)
   - SQL (SQLDeveloper, Valentina Studio)
   - Automation (Google Sheets, Postman)
+- Desktop
+  - VisualNEO Win, SQL
+  - Python (PIL, pandas, numpy, matplotlib, easyocr, pytesseract, cv2 openpyxl, pyexcel, xlrd, PyQt) 
+  - Excel, pandoc
 - Graphics
   - Adobe Photoshop, GIMP, Gifski, XnConvert
+- Mobile
+  - App Inventor, Thunkable
 - VCS
   - Git, GitHub
 - Prototyping
